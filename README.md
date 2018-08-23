@@ -7,6 +7,7 @@ Record tweets and actions in your timeline into Google Cloud SQL, by using Googl
 - Python (Google App Engine) >= 3.6
 - Consumer {key | secret} for Official Twitter Client
 	- Using undocumented API
+- Access {key | secret} for Official Twitter Client
 - Pushover's API key <<https://pushover.net/>>
 	- You can get notifications of mentions, favorites, etc.
 
