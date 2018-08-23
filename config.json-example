@@ -1,0 +1,4 @@
+{
+  "FILTER_REGEX": "^フィルター",
+  "BLACKLIST_REGEX": "^RT "
+}

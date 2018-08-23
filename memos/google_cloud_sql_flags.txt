@@ -1,0 +1,4 @@
+character_set_server = utf8mb4
+default-time-zone = +09:00
+# INNODB_FT_DEFAULT_STOPWORDがngramによる全文検索時に使われないよう設定上書き
+innodb_ft_server_stopword_table = 'tweet_record/INNODB_FT_STOPWORD'
