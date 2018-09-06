@@ -204,19 +204,22 @@ class Base:
         # TODO: further research is needed to catch any actions
         if action['action'] == 'favorite':
             title = f"Tw: @{action['sources'][0]['screen_name']} favs your tweet"
-            self.send_to_pushservice(title, action['targets'][0]['full_text'], f"twitter://status?id=#{action['targets'][0]['id']}")
+            self.send_to_pushservice(title, action['targets'][0]['full_text'], f"twitter://status?id={action['targets'][0]['id']}")
         elif action['action'] == 'follow':
             title = f"Tw: @{action['sources'][0]['screen_name']} follows you"
             self.send_to_pushservice(title, '')
         elif action['action'] == 'favorited_retweet':
             title = f"Tw: @{action['sources'][0]['screen_name']} favs your retweet"
-            self.send_to_pushservice(title, action['targets'][0]['full_text'], f"twitter://status?id=#{action['targets'][0]['id']}")
+            self.send_to_pushservice(title, action['targets'][0]['full_text'], f"twitter://status?id={action['targets'][0]['id']}")
         elif action['action'] == 'retweeted_retweet':
             title = f"Tw: @{action['sources'][0]['screen_name']} retweets your retweet"
-            self.send_to_pushservice(title, action['targets'][0]['full_text'], f"twitter://status?id=#{action['targets'][0]['id']}")
+            self.send_to_pushservice(title, action['targets'][0]['full_text'], f"twitter://status?id={action['targets'][0]['id']}")
         elif action['action'] == 'favorited_mention':
-            title = f"Tw: @{action['sources'][0]['screen_name']} favs tweet that mentions you"
-            self.send_to_pushservice(title, action['targets'][0]['full_text'], f"twitter://status?id=#{action['targets'][0]['id']}")
+            title = f"Tw: @{action['sources'][0]['screen_name']} favs tweet you were mentioned in"
+            self.send_to_pushservice(title, action['targets'][0]['full_text'], f"twitter://status?id={action['targets'][0]['id']}")
+        elif action['action'] == 'list_member_added':
+            title = f"Tw: @{action['sources'][0]['screen_name']} adds you to list {action['target_objects'][0]['full_name']}"
+            self.send_to_pushservice(title, action['targets'][0]['full_text'], f"twitter://list?screen_name={action['target_objects'][0]['user']['screen_name']}&slug={action['target_objects'][0]['slug']}")
         elif action['action'] != 'reply' and action['action'] != 'mention':
             title = f"Tw: action-@{action['action']}"
             self.send_to_pushservice(title, json.dumps(action, separators=(',', ':')))
